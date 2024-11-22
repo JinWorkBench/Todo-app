@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    width: 612px;
+    height: 356px;
+    display: flex;
+    background-color: #e27680;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    margin: 10px;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.main ul {
+    height: 300px;
+    list-style-type: none;
+    overflow-x: auto;
+}
+
+.main ul li {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.inputbox {
+    width: 420px;
+    height: 80px;
+    border-radius: 20px;
+    border: none;
+    background-color: #b4dbe5;
+    padding-left: 50px;
+    padding-right: 100px;
+    font-size: 24px;
+    outline: none;
+}
+
+.todo_checkbox {
+    position: absolute;
+    top: 34px;
+    left: 24px;
+    z-index: 1;
+}
+
+.inputbox:focus {
+    border: 2px solid white;
+    width: 416px;
+    height: 76px;
+}
+
+.todo_delete {
+    position: absolute;
+    background: url('icon/delete.png');
+    background-position: center;
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    top: 34px;
+    right: 24px;
+    z-index: 1;
+}

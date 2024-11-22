@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">Todos 앱</div>
+            <div class="append" onclick="New()">새로운 TODO 추가하기</div>
+        </div>
+        <div class="main" id="main_list">
+            <ul id="todo_list">
+            </ul>
+        </div>
+    </div> 
+    <script>
+        function New() {
+            const todoList = document.getElementById('todo_list');
+            // id가 todo_list인 요소를 참조하는 변수 선언 -> <ul>
+            const listItem = document.createElement('li');
+            // <li>를 요소를 생성하고 참조하는 변수 선언
+            
+            const newInput = document.createElement('input');
+            // <input>를 요소를 생성하고 참조하는 변수 선언
+            newInput.className = 'inputbox'
+            // 생성한 <input>의 클래스명을 inputbox로 설정
+            
+            const checkBox = document.createElement('input')
+            // <input>를 요소를 생성하고 참조하는 변수 선언
+            checkBox.type = 'checkbox';
+            // 생성한 <input>의 타입을 체크박스로 설정
+            checkBox.className ='todo_checkbox';
+            // 생성한 <input>의 클래스명을 todo_checkbox로 설정
+
+            const deleteButton = document.createElement('button');
+            // <button> 요소를 생성하고 참조하는 변수 선언
+            deleteButton.className = 'todo_delete';
+            deleteButton.onclick = function() {
+                todoList.removeChild(listItem);
+            };
+            // 삭제 버튼 클릭 시 해당 <li> 요소를 삭제
+
+            listItem.appendChild(checkBox);
+            // listItem을 통해 생성한 <li>의 자식 요소에서 checkBox 실행 -> 체크박스 <input>이 생성됨 -> <li><input></li>
+            listItem.appendChild(newInput);
+            // listItem을 통해 생성한 <li>의 자식 요소에서 newInput 실행 -> 입력박스 <input>이 생성됨 -> <li><input><input></li>
+            listItem.appendChild(deleteButton);
+            // listItem을 통해 생성한 <li>의 자식 요소에서 deleteButton 실행 -> 삭제 버튼이 생성됨 -> <li><input><input><button></li>
+            todoList.appendChild(listItem);
+            // todoList로 참조한 <ul>의 자식 요소에서 listItem 실행 -> 현재 listItem 값인 <li><input><input><button></li>를 추가
+        }
+    </script> 
+</body>
+</html>
