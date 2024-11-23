@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel=""stylesheet">
 </head>
 <body>
     <div class="container">
@@ -23,18 +24,45 @@
             // id가 todo_list인 요소를 참조하는 변수 선언 -> <ul>
             const listItem = document.createElement('li');
             // <li>를 요소를 생성하고 참조하는 변수 선언
-            
+
+            const todoDiv = document.createElement('div')
+            // <div>를 생성하고 참조하는 변수 선언
+            todoDiv.className = 'todo_style'
+            // 생성한 <div> 에 클래스명을 todo_style로 설정
+
             const newInput = document.createElement('input');
-            // <input>를 요소를 생성하고 참조하는 변수 선언
+            // <input>를 생성하고 참조하는 변수 선언
             newInput.className = 'inputbox'
             // 생성한 <input>의 클래스명을 inputbox로 설정
-            
+            newInput.disabled = true;
+            // 기본적으로 입력 박스를 비활성화 상태로 설정
+    
             const checkBox = document.createElement('input')
             // <input>를 요소를 생성하고 참조하는 변수 선언
             checkBox.type = 'checkbox';
             // 생성한 <input>의 타입을 체크박스로 설정
             checkBox.className ='todo_checkbox';
             // 생성한 <input>의 클래스명을 todo_checkbox로 설정
+            checkBox.onchange = function() {
+                if (checkBox.checked) {
+                    newInput.classList.add('completed');
+                    todoDiv.classList.add('completed');
+                } else {
+                    newInput.classList.remove('completed');
+                    todoDiv.classList.remove('completed');
+                }
+            };
+            // onchange(상태가 변경되었을 때)
+
+            const editButton = document.createElement('button');
+            // <button> 요소를 생성하고 참조하는 변수 선정
+            editButton.className = 'todo_edit';
+            editButton.onclick = function() {
+                newInput.disabled = !newInput.disabled;
+                if (!newInput.disabled) {
+                    newInput.focus();
+                }
+            };
 
             const deleteButton = document.createElement('button');
             // <button> 요소를 생성하고 참조하는 변수 선언
@@ -42,16 +70,20 @@
             deleteButton.onclick = function() {
                 todoList.removeChild(listItem);
             };
-            // 삭제 버튼 클릭 시 해당 <li> 요소를 삭제
+            // 삭제 버튼 클릭 시 해당 <li> 요소를 샥제
 
-            listItem.appendChild(checkBox);
-            // listItem을 통해 생성한 <li>의 자식 요소에서 checkBox 실행 -> 체크박스 <input>이 생성됨 -> <li><input></li>
-            listItem.appendChild(newInput);
-            // listItem을 통해 생성한 <li>의 자식 요소에서 newInput 실행 -> 입력박스 <input>이 생성됨 -> <li><input><input></li>
-            listItem.appendChild(deleteButton);
-            // listItem을 통해 생성한 <li>의 자식 요소에서 deleteButton 실행 -> 삭제 버튼이 생성됨 -> <li><input><input><button></li>
             todoList.appendChild(listItem);
-            // todoList로 참조한 <ul>의 자식 요소에서 listItem 실행 -> 현재 listItem 값인 <li><input><input><button></li>를 추가
+            // todoList 가 참조 중인 <ul> 에 자식 요소 <li> -> <ul><li></li><ul>    
+            listItem.appendChild(todoDiv);
+            // listItem 이 참조 중인 <li> 에 자식 요소 <div> 추가 -> <li><div></div></li>
+            todoDiv.appendChild(checkBox);
+            // todoDiv 가 참조 중d <div> 에 자식 요소 체크박스 <input> 추가 -> <div><input></div>
+            todoDiv.appendChild(newInput);
+            // todoDiv 가 참조 중인 <div> 에 자식 요소 입력박스 <input> 추가 -> <div><input></div> -> <div><input><input></div>
+            todoDiv.appendChild(editButton);
+            // todoDiv 가 참조 중인 <div> 에 자식 요소 <button> 추가 -> <div><button></button></div> -> <div><input><input><button></button></div>
+            todoDiv.appendChild(deleteButton);
+            // todoDiv 가 참조 중인 <div> 에 자식 요소 <button> 추가 -> <div><button></button></div> -> <div><input><input><button></button></div>
         }
     </script> 
 </body>
