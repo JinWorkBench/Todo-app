@@ -34,7 +34,13 @@
             // <input>를 생성하고 참조하는 변수 선언
             newInput.className = 'inputbox'
             // 생성한 <input>의 클래스명을 inputbox로 설정
-            newInput.disabled = true;
+            newInput.disabled = false;
+            setTimeout(() => {
+                newInput.focus();
+            }, 0);
+            newInput.onblur = function() {
+                newInput.disabled = true;
+            };
             // 기본적으로 입력 박스를 비활성화 상태로 설정
     
             const checkBox = document.createElement('input')
@@ -72,7 +78,7 @@
             };
             // 삭제 버튼 클릭 시 해당 <li> 요소를 샥제
 
-            todoList.appendChild(listItem);
+            todoList.insertBefore(listItem, todoList.firstChild);
             // todoList 가 참조 중인 <ul> 에 자식 요소 <li> -> <ul><li></li><ul>    
             listItem.appendChild(todoDiv);
             // listItem 이 참조 중인 <li> 에 자식 요소 <div> 추가 -> <li><div></div></li>

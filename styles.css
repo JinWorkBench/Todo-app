@@ -63,7 +63,7 @@ body {
 .inputbox {
     width: 420px;
     height: 24px;
-    margin-left: 50px;
+    margin-left: 54px;
     margin-top: 28px;
     font-size: 22px;
     position: absolute;
@@ -103,6 +103,7 @@ body {
     background: url('icon/edit.png');
     background-position: center;
     background-size: cover;
+    filter: hue-rotate(180);
     border: none;
     cursor: pointer;
     width: 18px;
